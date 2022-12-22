@@ -103,24 +103,31 @@ class ContentBlockerHelper {
     
     #if DEBUG
     let rulesString = loadedRuleTypeWithSourceTypes.map { ruleTypeWithSourceType -> String in
-      let ruleTypeString: String
-      
-      switch ruleTypeWithSourceType.ruleType {
-      case .general(let type):
-        ruleTypeString = type.rawValue
-      case .filterList(let uuid):
-        ruleTypeString = "filterList(\(uuid))"
-      }
-      
-      let rulesDebugString = [
-        "ruleType: \(ruleTypeString)",
-        "sourceType: \(ruleTypeWithSourceType.sourceType)"
-      ].joined(separator: ", ")
-      
-      return ["{", rulesDebugString, "}"].joined()
+      return ruleTypeWithSourceType.debugDescription
     }.joined(separator: ", ")
     
-    log.debug("Loaded \(self.loadedRuleTypeWithSourceTypes.count, privacy: .public) tab rules: \(rulesString, privacy: .public)")
+    log.debug("Loaded \(self.loadedRuleTypeWithSourceTypes.count, privacy: .public) tab rules: [\(rulesString, privacy: .public)]")
     #endif
   }
 }
+
+#if DEBUG
+extension ContentBlockerManager.RuleTypeWithSourceType: CustomDebugStringConvertible {
+  public var debugDescription: String {
+    return [
+      ruleType.debugDescription, sourceType.debugDescription
+    ].joined(separator: ": ")
+  }
+}
+
+extension ContentBlockerManager.BlocklistRuleType: CustomDebugStringConvertible {
+  public var debugDescription: String {
+    switch self {
+    case .general(let generalBlocklistType):
+      return generalBlocklistType.rawValue
+    case .filterList(let uuid):
+      return "filterList(\(uuid))"
+    }
+  }
+}
+#endif

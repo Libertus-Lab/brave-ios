@@ -193,32 +193,29 @@ extension AdBlockEngineManager {
         
         switch compileResult {
         case .success:
-          resultString = "success"
-        case .failure(let error):
-          resultString = error.localizedDescription
+          resultString = ""
+        case .failure:
+          resultString = " ❌"
         }
         
-        let sourceDebugString = [
+        return [
           resourceWithVersion.debugDescription,
-          "result: \(resultString)",
-        ].joined(separator: ", ")
-        
-        return ["{", sourceDebugString, "}"].joined()
+          resultString
+        ].joined()
       }.joined(separator: ", ")
 
-    log.debug("Loaded \(self.enabledResources.count, privacy: .public) (total) engine resources: \(resourcesString, privacy: .public)")
+    log.debug("Loaded \(self.enabledResources.count, privacy: .public) (total) engine resources: [\(resourcesString, privacy: .public)]")
   }
 }
 
 extension AdBlockEngineManager.ResourceWithVersion: CustomDebugStringConvertible {
   public var debugDescription: String {
     return [
-      "order: \(order)",
-      "fileName: \(fileURL.lastPathComponent)",
-      "source: \(resource.source.debugDescription)",
-      "version: \(version ?? "nil")",
-      "type: \(resource.type.debugDescription)"
-    ].joined(separator: ", ")
+      "#\(order) ",
+      "\(resource.source.debugDescription)",
+      ".\(resource.type.debugDescription)",
+      " v\(version ?? "nil")"
+    ].joined()
   }
 }
 

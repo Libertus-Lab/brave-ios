@@ -436,40 +436,36 @@ final public class ContentBlockerManager: Sendable {
         lhs.value.url.absoluteString < rhs.value.url.absoluteString
       })
       .map { identifier, compiledResource -> String in
-        let sourceString: String
-        let versionString: String
         let resultString: String
         
-        switch compiledResource.sourceType {
-        case .bundled:
-          sourceString = "bundled"
-          versionString = "nil"
-        case .downloaded(let version):
-          sourceString = "downloaded"
-          versionString = version ?? "nil"
-        }
-        
         switch self.cachedCompileResults[identifier]?.result {
-        case .failure(let error):
-          resultString = error.localizedDescription
         case .success:
-          resultString = "success"
+          resultString = ""
+        case .failure:
+          resultString = "❌"
         case .none:
-          resultString = "nil"
+          resultString = "❓"
         }
         
-        let resourcesDebugString = [
-          "identifier: \(identifier)",
-          "fileName: \(compiledResource.url.lastPathComponent)",
-          "source: \(sourceString)",
-          "version: \(versionString)",
-          "result: \(resultString)"
-        ].joined(separator: ", ")
-        
-        return ["{", resourcesDebugString, "}"].joined()
+        return [
+          identifier, [compiledResource.sourceType.debugDescription, resultString].joined()
+        ].joined(separator: ": ")
       }.joined(separator: ", ")
 
-    Self.log.debug("Compiled \(resources.count, privacy: .public) additional block list resources: \(resourcesString, privacy: .public))")
+    Self.log.debug("Compiled \(resources.count, privacy: .public) additional block list resources: [\(resourcesString, privacy: .public)]")
   }
   #endif
 }
+
+#if DEBUG
+extension ContentBlockerManager.BlocklistSourceType: CustomDebugStringConvertible {
+  public var debugDescription: String {
+    switch self {
+    case .bundled:
+      return "bundled"
+    case .downloaded(let version):
+      return version ?? "nil"
+    }
+  }
+}
+#endif

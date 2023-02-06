@@ -47,15 +47,15 @@ actor ContentBlockerManager {
   /// An object representing the type of block list
   public enum BlocklistType: Hashable {
     case generic(GenericBlocklistType)
-    case filterList(uuid: String)
+    case filterList(componentId: String)
     case customFilterList(uuid: String)
     
     var identifier: String {
       switch self {
       case .generic(let type):
         return ["stored-type", type.bundledFileName].joined(separator: "-")
-      case .filterList(let uuid):
-        return ["filter-list", uuid].joined(separator: "-")
+      case .filterList(let componentId):
+        return ["filter-list", componentId].joined(separator: "-")
       case .customFilterList(let uuid):
         return ["custom-filter-list", uuid].joined(separator: "-")
       }
@@ -203,10 +203,10 @@ actor ContentBlockerManager {
     }
     
     // Get rule lists for filter lists
-    let filterLists = FilterListResourceDownloader.shared.filterLists
+    let filterLists = FilterListStorage.shared.filterLists
     let additionalRuleLists = filterLists.compactMap { filterList -> BlocklistType? in
       guard filterList.isEnabled else { return nil }
-      return .filterList(uuid: filterList.uuid)
+      return .filterList(componentId: filterList.entry.componentId)
     }
     
     // Get rule lists for custom filter lists

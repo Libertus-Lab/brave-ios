@@ -41,7 +41,7 @@ class BraveShieldsAndPrivacySettingsController: TableViewController {
     self.historyAPI = historyAPI
     self.p3aUtilities = p3aUtilities
 
-    self.currentCookieConsentNoticeBlockingState = FilterListResourceDownloader.shared.isEnabled(
+    self.currentCookieConsentNoticeBlockingState = FilterListStorage.shared.isEnabled(
       for: FilterList.cookieConsentNoticesComponentID
     )
     
@@ -66,12 +66,12 @@ class BraveShieldsAndPrivacySettingsController: TableViewController {
     ]
     
     // Listen to changes on filter lists so we know we need to reload the section
-    FilterListResourceDownloader.shared.$filterLists
+    FilterListStorage.shared.$filterLists
       .sink { filterLists in
         let filterList = filterLists.first(where: { $0.entry.componentId == FilterList.cookieConsentNoticesComponentID })
         
         Task { @MainActor in
-          let isEnabled = FilterListResourceDownloader.shared.isEnabled(for: FilterList.cookieConsentNoticesComponentID)
+          let isEnabled = FilterListStorage.shared.isEnabled(for: FilterList.cookieConsentNoticesComponentID)
           
           guard filterList?.isEnabled == isEnabled else {
             assertionFailure("The two should be in sync")
@@ -226,15 +226,14 @@ class BraveShieldsAndPrivacySettingsController: TableViewController {
   
   private var blockMobileAnnoyancesRow: Row {
     let mobileAnnoyancesComponentID = FilterList.mobileAnnoyancesComponentID
-    let filterListDownloader = FilterListResourceDownloader.shared
     
     return Row(
       text: Strings.blockMobileAnnoyances,
       accessory:
           .view(SwitchAccessoryView(
-            initialValue: filterListDownloader.isEnabled(for: mobileAnnoyancesComponentID),
+            initialValue: FilterListStorage.shared.isEnabled(for: mobileAnnoyancesComponentID),
             valueChange: { value in
-              FilterListResourceDownloader.shared.enableFilterList(for: mobileAnnoyancesComponentID, isEnabled: value)
+              FilterListStorage.shared.enableFilterList(for: mobileAnnoyancesComponentID, isEnabled: value)
             })), cellClass: MultilineSubtitleCell.self, uuid: "blockMobileAnnoyances"
     )
   }
@@ -364,12 +363,12 @@ class BraveShieldsAndPrivacySettingsController: TableViewController {
     return .boolRow(
       uuid: self.cookieConsentNoticesRowUUID,
       title: Strings.blockCookieConsentNotices,
-      toggleValue: FilterListResourceDownloader.shared.isEnabled(
+      toggleValue: FilterListStorage.shared.isEnabled(
         for: FilterList.cookieConsentNoticesComponentID
       ),
       valueChange: { isEnabled in
         self.currentCookieConsentNoticeBlockingState = isEnabled
-        FilterListResourceDownloader.shared.enableFilterList(
+        FilterListStorage.shared.enableFilterList(
           for: FilterList.cookieConsentNoticesComponentID, isEnabled: isEnabled
         )
       }, cellReuseId: "blockCookieConsentNoticesReuseIdentifier"

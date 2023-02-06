@@ -10,14 +10,6 @@ protocol FilterListInterface {
   @MainActor var uuid: String { get }
 }
 
-extension FilterListInterface {
-  @MainActor func makeResource(componentId: String) -> BraveS3Resource {
-    return .filterListContentBlockingBehaviors(
-      uuid: uuid, componentId: componentId
-    )
-  }
-}
-
 extension FilterListSetting: FilterListInterface {}
 
 extension FilterList: FilterListInterface {

@@ -14,13 +14,13 @@ public actor AdblockResourceDownloader: Sendable {
   
   /// List of all bundled content blockers.
   /// Regional lists are downloaded on fly and not included here.
-  private static var bundledLists: Set<ContentBlockerManager.GenericBlocklistType> = [
-    .blockTrackers, .blockCookies
-  ]
+  private static let bundledLists = Set([
+    ContentBlockerManager.GenericBlocklistType.blockTrackers, .blockCookies
+  ])
   
   /// All the different resources this downloader handles
   static let handledResources: [BraveS3Resource] = [
-    .genericContentBlockingBehaviors, .generalCosmeticFilters, .debounceRules
+    .genericContentBlockingBehaviors, .generalCosmeticFilters, .debounceRules, .httpsUpgradeExceptionList
   ]
   
   /// A formatter that is used to format a version number
@@ -164,6 +164,18 @@ public actor AdblockResourceDownloader: Sendable {
         try DebouncingResourceDownloader.shared.setup(withRulesJSON: data)
       } catch {
         ContentBlockerManager.log.error("Failed to setup debounce rules: \(error.localizedDescription)")
+      }
+      
+    case .httpsUpgradeExceptionList:
+      do {
+        guard let string = try ResourceDownloader<BraveS3Resource>.string(for: resource) else {
+          assertionFailure("We just downloaded this file, how can it not be there?")
+          return
+        }
+        
+        print(string)
+      } catch {
+        ContentBlockerManager.log.error("Failed to setup https upgrade exception list: \(error.localizedDescription)")
       }
       
     default:

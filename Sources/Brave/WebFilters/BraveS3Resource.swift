@@ -16,6 +16,8 @@ enum BraveS3Resource: Hashable, DownloadResourceInterface {
   /// Adblock rules for a filter list
   /// iOS only content blocking behaviours used for the iOS content blocker for a given filter list
   case filterListContentBlockingBehaviors(uuid: String, componentId: String)
+  /// A list fo domains that should not be upgraded to https
+  case httpsUpgradeExceptionList
   
   /// The name of the info plist key that contains the service key
   private static let servicesKeyName = "SERVICES_KEY"
@@ -42,6 +44,8 @@ enum BraveS3Resource: Hashable, DownloadResourceInterface {
       return "abp-data"
     case .generalCosmeticFilters:
       return "cmf-data"
+    case .httpsUpgradeExceptionList:
+      return "https-data"
     }
   }
   
@@ -56,6 +60,8 @@ enum BraveS3Resource: Hashable, DownloadResourceInterface {
       return "latest.json"
     case .generalCosmeticFilters:
       return "ios-cosmetic-filters.dat"
+    case .httpsUpgradeExceptionList:
+      return "https-upgrade-exceptions-list.txt"
     }
   }
   
@@ -70,6 +76,8 @@ enum BraveS3Resource: Hashable, DownloadResourceInterface {
       return Self.baseResourceURL.appendingPathComponent("/ios/latest.json")
     case .generalCosmeticFilters:
       return Self.baseResourceURL.appendingPathComponent("/ios/ios-cosmetic-filters.dat")
+    case .httpsUpgradeExceptionList:
+      return Self.baseResourceURL.appendingPathComponent("/ios/https-upgrade-exceptions-list.txt")
     }
   }
   

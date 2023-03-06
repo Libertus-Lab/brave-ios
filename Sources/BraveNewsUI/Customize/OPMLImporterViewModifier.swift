@@ -6,8 +6,8 @@
 import Foundation
 import SwiftUI
 import BraveUI
-import BraveShared
 import FeedKit
+import Strings
 
 enum FindFeedsError: Error, Identifiable {
   /// An error occured while attempting to download the page

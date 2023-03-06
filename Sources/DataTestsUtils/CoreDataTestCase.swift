@@ -5,7 +5,7 @@
 import XCTest
 import CoreData
 @testable import Data
-@testable import BraveShared
+import Preferences
 
 open class CoreDataTestCase: XCTestCase {
 

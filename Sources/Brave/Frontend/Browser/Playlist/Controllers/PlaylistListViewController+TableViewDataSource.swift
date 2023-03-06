@@ -11,7 +11,7 @@ import AVFoundation
 import Data
 import Shared
 import BraveUI
-import BraveShared
+import Preferences
 import Favicon
 import os.log
 

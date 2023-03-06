@@ -23,6 +23,8 @@ import class Combine.AnyCancellable
 import BraveWallet
 import BraveVPN
 import BraveNews
+import BraveNewsUI
+import Preferences
 import os.log
 #if canImport(BraveTalk)
 import BraveTalk
@@ -350,7 +352,7 @@ public class BrowserViewController: UIViewController {
       }
     }
 
-    feedDataSource.ads = rewards.ads
+    feedDataSource.ads = .live(ads: rewards.ads)
     
     // Observer watching tab information is sent by another device
     openTabsModelStateListener = braveCore.sendTabAPI.add(

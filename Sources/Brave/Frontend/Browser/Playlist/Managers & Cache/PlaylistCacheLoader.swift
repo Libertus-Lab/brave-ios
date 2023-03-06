@@ -10,6 +10,7 @@ import MobileCoreServices
 import Data
 import Shared
 import BraveShared
+import Preferences
 import BraveCore
 import Storage
 import os.log

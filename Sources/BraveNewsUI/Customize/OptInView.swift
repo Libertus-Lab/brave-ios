@@ -7,8 +7,8 @@ import Foundation
 import SwiftUI
 import BraveUI
 import DesignSystem
-import BraveShared
 import Lottie
+import Strings
 
 struct OptInView: View {
   var tappedTurnOn: @Sendable () async throws -> Void

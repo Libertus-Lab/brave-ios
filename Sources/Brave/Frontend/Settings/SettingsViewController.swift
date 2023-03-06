@@ -5,6 +5,7 @@
 import UIKit
 import Shared
 import BraveShared
+import Preferences
 import Static
 import SwiftKeychainWrapper
 import LocalAuthentication
@@ -17,6 +18,7 @@ import BraveWallet
 import BraveUI
 import BraveVPN
 import BraveNews
+import BraveNewsUI
 import Growth
 
 extension TabBarVisibility: RepresentableOptionType {
@@ -25,6 +27,17 @@ extension TabBarVisibility: RepresentableOptionType {
     case .always: return Strings.alwaysShow
     case .landscapeOnly: return Strings.showInLandscapeOnly
     case .never: return Strings.neverShow
+    }
+  }
+}
+
+extension Preferences.AutoCloseTabsOption: RepresentableOptionType {
+  public var displayString: String {
+    switch self {
+    case .manually: return Strings.Settings.autocloseTabsManualOption
+    case .oneDay: return Strings.Settings.autocloseTabsOneDayOption
+    case .oneWeek: return Strings.Settings.autocloseTabsOneWeekOption
+    case .oneMonth: return Strings.Settings.autocloseTabsOneMonthOption
     }
   }
 }

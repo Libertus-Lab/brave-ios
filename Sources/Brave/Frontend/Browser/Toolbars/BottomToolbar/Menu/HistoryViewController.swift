@@ -5,6 +5,7 @@
 import Foundation
 import Shared
 import BraveShared
+import Preferences
 import Storage
 import Data
 import CoreData

@@ -4,7 +4,7 @@
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 import Foundation
-import BraveCore
+import UIKit
 
 /// A set of 2 items
 public struct FeedPair: Hashable {
@@ -24,11 +24,11 @@ public enum FeedCard: Hashable {
   /// A sponsored image to display
   case sponsor(_ feed: FeedItem)
   /// A group of deals/offers displayed horizontally
-  case deals(_ feeds: [FeedItem], title: String)
+  case deals(_ feeds: [FeedItem], title: String?)
   /// A brave partner item
   case partner(_ feed: FeedItem)
   /// A brave display ad card
-  case ad(InlineContentAd)
+  case ad(BraveAdsProxy.InlineContentAd)
   /// A single item displayed prompinently with an image
   case headline(_ feed: FeedItem)
   /// A pair of `headline` items that should be displayed side by side horizontally with equal sizes
@@ -37,24 +37,6 @@ public enum FeedCard: Hashable {
   case group(_ feeds: [FeedItem], title: String, direction: NSLayoutConstraint.Axis, displayBrand: Bool)
   /// A numbered group of items which will always be displayed in a vertical list.
   case numbered(_ feeds: [FeedItem], title: String)
-
-  /// Obtain an estimated height for this card given a width it will be displayed with
-  public func estimatedHeight(for width: CGFloat) -> CGFloat {
-    switch self {
-    case .sponsor:
-      return FeedItemView.Layout.bannerThumbnail.estimatedHeight(for: width)
-    case .headline:
-      return FeedItemView.Layout.brandedHeadline.estimatedHeight(for: width)
-    case .partner:
-      return FeedItemView.Layout.partner.estimatedHeight(for: width)
-    case .ad:
-      return FeedItemView.Layout.ad.estimatedHeight(for: width)
-    case .headlinePair:
-      return 300
-    case .group, .numbered, .deals:
-      return 400
-    }
-  }
 
   /// A list of feed items that are present in the card
   public var items: [FeedItem] {

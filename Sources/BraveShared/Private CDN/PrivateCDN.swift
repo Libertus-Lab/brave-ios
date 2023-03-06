@@ -4,7 +4,6 @@
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 import Foundation
-import SDWebImage
 
 extension FixedWidthInteger {
   /// The host-endian representation of this integer.
@@ -56,6 +55,9 @@ public class PrivateCDN {
   }
 }
 
+#if canImport(SDWebImage)
+import SDWebImage
+
 /// A custom SDWebImageCoder that will decode padded images that come from the Private CDN
 public class PrivateCDNImageCoder: NSObject, SDImageCoder {
   public func canDecode(from data: Data?) -> Bool {
@@ -75,3 +77,4 @@ public class PrivateCDNImageCoder: NSObject, SDImageCoder {
     SDImageCodersManager.shared.encodedData(with: image, format: format)
   }
 }
+#endif

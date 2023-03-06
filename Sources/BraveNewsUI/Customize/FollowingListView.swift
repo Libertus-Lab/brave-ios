@@ -6,7 +6,7 @@
 import Foundation
 import SwiftUI
 import BraveUI
-import BraveShared
+import Strings
 import Introspect
 
 struct FollowingListContainerView: View {

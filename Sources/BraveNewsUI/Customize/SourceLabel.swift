@@ -6,7 +6,7 @@
 import Foundation
 import SwiftUI
 import BraveUI
-import BraveShared
+import Strings
 
 private struct SourceImageView: View {
   var source: FeedItem.Source

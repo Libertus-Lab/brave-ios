@@ -5,6 +5,7 @@
 import XCTest
 import CoreData
 import BraveShared
+import Preferences
 @testable import Data
 import DataTestsUtils
 

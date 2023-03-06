@@ -8,7 +8,7 @@ import Data
 import FeedKit
 import Fuzi
 import Shared
-import Growth
+//import Growth
 import SwiftUI
 
 public struct RSSFeedLocation: Hashable, Identifiable {
@@ -28,7 +28,7 @@ public struct RSSFeedLocation: Hashable, Identifiable {
 extension FeedDataSource {
   // MARK: - RSS Sources
 
-  @MainActor var rssFeedLocations: [RSSFeedLocation] {
+  @MainActor public var rssFeedLocations: [RSSFeedLocation] {
     RSSFeedSource.all().compactMap {
       guard let url = URL(string: $0.feedUrl) else { return nil }
       return RSSFeedLocation(title: $0.title, url: url)
@@ -40,7 +40,7 @@ extension FeedDataSource {
   /// - returns: `true` if the feed is successfully added, `false` if it already exists or the
   ///            url location is not a web page url
   @discardableResult
-  func addRSSFeedLocation(_ location: RSSFeedLocation) -> Bool {
+  public func addRSSFeedLocation(_ location: RSSFeedLocation) -> Bool {
     if !location.url.isWebPage(includeDataURIs: false), !InternalURL.isValid(url: location.url) {
       return false
     }
@@ -64,7 +64,7 @@ extension FeedDataSource {
   }
 
   /// Remove a users custom RSS feed to the list of sources
-  func removeRSSFeed(_ location: RSSFeedLocation) {
+  public func removeRSSFeed(_ location: RSSFeedLocation) {
     let feedUrl = location.url.absoluteString
     if RSSFeedSource.get(with: feedUrl) == nil {
       return
@@ -80,11 +80,11 @@ extension FeedDataSource {
   /// Whether or not an RSS feed is currently enabled
   ///
   /// - note: RSS Feeds are enabled by default since they are added by the user
-  func isRSSFeedEnabled(_ location: RSSFeedLocation) -> Bool {
+  public func isRSSFeedEnabled(_ location: RSSFeedLocation) -> Bool {
     FeedSourceOverride.get(fromId: location.id)?.enabled ?? true
   }
   
-  @MainActor func isFollowingRSSFeedBinding(feed: RSSFeedLocation) -> Binding<Bool> {
+  @MainActor public func isFollowingRSSFeedBinding(feed: RSSFeedLocation) -> Binding<Bool> {
     .init {
       self.rssFeedLocations.contains(where: { $0.id == feed.id })
     } set: { [self] newValue in
@@ -98,11 +98,11 @@ extension FeedDataSource {
     }
   }
   
-  func updateRSSFeed(feed: RSSFeedLocation, title: String) {
+  public func updateRSSFeed(feed: RSSFeedLocation, title: String) {
     RSSFeedSource.update(feedUrl: feed.id, title: title)
   }
   
-  @MainActor func purgeDisabledRSSLocations() {
+  @MainActor public func purgeDisabledRSSLocations() {
     // News 2.0 no longer allows keeping RSS feeds, so this will attempt to remove any RSS feeds the user has
     // specifically disabled
     let locations = Set(rssFeedLocations.map(\.id))
@@ -119,24 +119,24 @@ extension FeedDataSource {
   
   func recordTotalExternalFeedsP3A() {
     // Q49 How many external feeds do you have in total?
-    Task { @MainActor in
-      UmaHistogramRecordValueToBucket(
-        "Brave.Today.DirectFeedsTotal",
-        buckets: [0, 1, 2, 3, 4, 5, .r(6...10), .r(11...)],
-        value: rssFeedLocations.count
-      )
-    }
+//    Task { @MainActor in
+//      UmaHistogramRecordValueToBucket(
+//        "Brave.Today.DirectFeedsTotal",
+//        buckets: [0, 1, 2, 3, 4, 5, .r(6...10), .r(11...)],
+//        value: rssFeedLocations.count
+//      )
+//    }
   }
   
   func recordExternalFeedCountChange(_ delta: Int) {
     // Q48 How many external feeds did you add last week?
-    var storage = P3ATimedStorage<Int>.rssFeedCountStorage
-    storage.add(value: delta, to: Date())
-    UmaHistogramRecordValueToBucket(
-      "Brave.Today.WeeklyAddedDirectFeedsCount",
-      buckets: [0, 1, 2, 3, 4, 5, .r(6...10), .r(11...)],
-      value: storage.combinedValue
-    )
+//    var storage = P3ATimedStorage<Int>.rssFeedCountStorage
+//    storage.add(value: delta, to: Date())
+//    UmaHistogramRecordValueToBucket(
+//      "Brave.Today.WeeklyAddedDirectFeedsCount",
+//      buckets: [0, 1, 2, 3, 4, 5, .r(6...10), .r(11...)],
+//      value: storage.combinedValue
+//    )
   }
 }
 
@@ -323,6 +323,6 @@ extension Feed {
   }
 }
 
-extension P3ATimedStorage where Value == Int {
-  fileprivate static var rssFeedCountStorage: Self { .init(name: "rss-feeds-added", lifetimeInDays: 7) }
-}
+//extension P3ATimedStorage where Value == Int {
+//  fileprivate static var rssFeedCountStorage: Self { .init(name: "rss-feeds-added", lifetimeInDays: 7) }
+//}

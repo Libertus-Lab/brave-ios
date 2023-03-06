@@ -5,6 +5,7 @@
 
 import Foundation
 import BraveShared
+import Preferences
 import Growth
 import Data
 

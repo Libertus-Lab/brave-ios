@@ -6,8 +6,8 @@
 import Foundation
 import BraveUI
 import Shared
-import BraveShared
 import UIKit
+import Preferences
 
 public class BraveNewsAddSourceResultsViewController: UITableViewController {
 

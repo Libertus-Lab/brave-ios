@@ -6,6 +6,7 @@
 import UIKit
 import Shared
 import BraveShared
+import Preferences
 import Storage
 import Data
 import BraveCore

@@ -4,10 +4,9 @@
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 import Foundation
-import BraveCore
 import Collections
-import BraveShared
 import OSLog
+import UIKit
 
 /// Generates the cards that appear on the Brave News feed
 ///
@@ -28,7 +27,7 @@ struct FeedCardGenerator: AsyncSequence {
   private var followedSources: Set<String>
   private var hiddenSources: Set<String>
   private var followedChannels: [String: Set<String>]
-  private var ads: BraveAds?
+  private var ads: BraveAdsProxy?
   
   init(
     scoredItems: [FeedItem],
@@ -36,7 +35,7 @@ struct FeedCardGenerator: AsyncSequence {
     followedSources: Set<String>,
     hiddenSources: Set<String>,
     followedChannels: [String: Set<String>],
-    ads: BraveAds?
+    ads: BraveAdsProxy?
   ) {
     self.items = scoredItems
     self.sequence = sequence
@@ -88,7 +87,7 @@ extension FeedCardGenerator {
     var partners: [FeedItem]
     var articles: [FeedItem]
     var sequence: [FeedSequenceElement]
-    let ads: BraveAds?
+    let ads: BraveAdsProxy?
     private let categoryGroupFillStrategy: CategoryFillStrategy<String>
     private let dealsFillStrategy: CategoryFillStrategy<String?>
     private var contentAdsQueryFailed: Bool = false
@@ -102,7 +101,7 @@ extension FeedCardGenerator {
       partners: [FeedItem],
       articles: [FeedItem],
       sequence: [FeedSequenceElement],
-      ads: BraveAds? = nil
+      ads: BraveAdsProxy? = nil
     ) {
       self.sponsors = sponsors
       self.deals = deals
@@ -168,7 +167,7 @@ extension FeedCardGenerator {
       case .deals:
         return dealsFillStrategy.next(3, from: &deals).map {
           let title = $0.first?.content.offersCategory
-          return [.deals($0, title: title ?? Strings.BraveNews.deals)]
+          return [.deals($0, title: title)]
         }
       case .partner:
         let imageExists = { (item: FeedItem) -> Bool in
@@ -183,23 +182,9 @@ extension FeedCardGenerator {
         guard !contentAdsQueryFailed, let ads = ads, ads.isAdsServiceRunning() else { return [] }
         if !inlineContentAdsPurged {
           inlineContentAdsPurged = true
-          await withCheckedContinuation { c in
-            DispatchQueue.main.async {
-              ads.purgeOrphanedAdEvents(.inlineContentAd, completion: { _ in
-                c.resume()
-              })
-            }
-          }
+          await ads.purgeOrphanedInlineAdEvents()
         }
-        let contentAd = await withCheckedContinuation { c in
-          DispatchQueue.main.async {
-            ads.inlineContentAds(
-              dimensions: "900x750",
-              completion: { dimensions, ad in
-                c.resume(returning: ad)
-              })
-          }
-        }
+        let contentAd = await ads.fetchInlineContentAd()
         guard let ad = contentAd else {
           contentAdsQueryFailed = true
           Logger.module.debug("Inline content ads could not be filled; Skipping for the rest of this feed generation")

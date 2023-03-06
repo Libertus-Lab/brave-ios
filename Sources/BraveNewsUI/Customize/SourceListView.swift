@@ -5,8 +5,8 @@
 
 import Foundation
 import SwiftUI
-import BraveShared
 import BraveUI
+import Strings
 
 struct SourceListContainerView: View {
   @ObservedObject var dataSource: FeedDataSource

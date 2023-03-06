@@ -7,6 +7,7 @@ import BraveCore
 import Data
 import Shared
 import BraveShared
+import Preferences
 import BraveUI
 import Onboarding
 import Storage

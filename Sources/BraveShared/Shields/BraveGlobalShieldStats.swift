@@ -6,6 +6,7 @@ import Foundation
 import Strings
 import SwiftyJSON
 import Combine
+import Preferences
 
 open class BraveGlobalShieldStats {
   public static let shared = BraveGlobalShieldStats()

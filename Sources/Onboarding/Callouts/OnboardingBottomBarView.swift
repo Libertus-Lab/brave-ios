@@ -6,7 +6,7 @@
 import SwiftUI
 import Shared
 import BraveUI
-import BraveShared
+import BraveShared // Strings -> Should belong to this module, BraveUX -> BraveUI
 
 public struct OnboardingBottomBarView: View {
   public var dismiss: (() -> Void)?

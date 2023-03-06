@@ -5,14 +5,14 @@
 
 import Shared
 import Data
-import BraveShared
+import Preferences
 import Intents
 import CoreSpotlight
 import MobileCoreServices
 import UIKit
 import BrowserIntentsModels
 import BraveVPN
-import BraveNews
+import BraveNewsUI
 import Growth
 import os.log
 import SwiftUI

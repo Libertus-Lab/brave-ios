@@ -6,8 +6,8 @@
 import Foundation
 import CoreData
 import Shared
-import BraveShared
 import os.log
+import Preferences
 
 /// Naming note:
 /// Before sync v2 `Favorite` was named `Bookmark` and contained logic for both bookmarks and favorites.

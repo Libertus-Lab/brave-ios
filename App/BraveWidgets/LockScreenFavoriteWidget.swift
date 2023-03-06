@@ -8,7 +8,7 @@ import WidgetKit
 import SwiftUI
 import BraveShared
 import BraveWidgetsModels
-import Favicon
+import FaviconModels
 
 struct LockScreenFavoriteWidget: Widget {
   var body: some WidgetConfiguration {

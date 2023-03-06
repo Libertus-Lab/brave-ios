@@ -7,7 +7,7 @@ import Foundation
 @preconcurrency import WebKit
 import Data
 import Shared
-import BraveShared
+import Preferences
 import os.log
 
 // TODO: Convert this class to `actor`(#6018)

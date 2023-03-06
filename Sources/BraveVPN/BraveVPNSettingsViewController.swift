@@ -6,9 +6,16 @@
 import UIKit
 import Static
 import Shared
-import BraveShared
+import Preferences
 import BraveUI
 import os.log
+
+extension URL {
+  fileprivate static let braveVPNFaqURL = URL(string: "https://support.brave.com/hc/en-us/articles/360045045952")!
+  fileprivate static let braveVPNLinkReceiptProd = URL(string: "https://account.brave.com/?intent=connect-receipt&product=vpn")!
+  fileprivate static let braveVPNLinkReceiptStaging = URL(string: "https://account.bravesoftware.com/?intent=connect-receipt&product=vpn")!
+  fileprivate static let braveVPNLinkReceiptDev = URL(string: "https://account.brave.software/?intent=connect-receipt&product=vpn")!
+}
 
 public class BraveVPNSettingsViewController: TableViewController {
 
@@ -71,17 +78,17 @@ public class BraveVPNSettingsViewController: TableViewController {
     
     rows.append(Row(text: Strings.VPN.settingsLinkReceipt,
                     selection: { [unowned self] in
-      openURL?(BraveUX.braveVPNLinkReceiptProd)
+      openURL?(.braveVPNLinkReceiptProd)
     }, cellClass: ButtonCell.self))
     
     if BraveVPN.isSandbox {
       rows += [Row(text: "[Staging] Link Receipt",
                    selection: { [unowned self] in
-        openURL?(BraveUX.braveVPNLinkReceiptStaging)
+        openURL?(.braveVPNLinkReceiptStaging)
       }, cellClass: ButtonCell.self),
                Row(text: "[Dev] Link Receipt",
                    selection: { [unowned self] in
-        openURL?(BraveUX.braveVPNLinkReceiptDev)
+        openURL?(.braveVPNLinkReceiptDev)
       }, cellClass: ButtonCell.self)]
     }
     
@@ -156,7 +163,7 @@ public class BraveVPNSettingsViewController: TableViewController {
     
     let termsSection = Section(rows:
                                 [Row(text: Strings.VPN.settingsFAQ, selection: { [unowned self] in
-      self.openURL?(BraveUX.braveVPNFaqURL)
+      self.openURL?(.braveVPNFaqURL)
       
     }, accessory: .disclosureIndicator, cellClass: ButtonCell.self)])
     

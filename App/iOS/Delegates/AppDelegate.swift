@@ -27,6 +27,7 @@ import BraveTalk
 #endif
 import Onboarding
 import os
+import Preferences
 
 extension AppDelegate {
   // A model that is passed used in every scene
@@ -176,7 +177,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     MenuHelper.defaultHelper.setItems()
 
-    SDImageCodersManager.shared.addCoder(PrivateCDNImageCoder())
+//    SDImageCodersManager.shared.addCoder(PrivateCDNImageCoder())
     SDImageCodersManager.shared.addCoder(SDImageSVGNativeCoder.shared)
 
     // Setup Profile

@@ -21,20 +21,6 @@
                ReferencedContainer = "container:Client.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "YES"
-            buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "F84B21BD1A090F8100AAB793"
-               BuildableName = "Client.app"
-               BlueprintName = "Client"
-               ReferencedContainer = "container:Client.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction
@@ -68,15 +54,6 @@
             ReferencedContainer = "container:Client.xcodeproj">
          </BuildableReference>
       </RemoteRunnable>
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "F84B21BD1A090F8100AAB793"
-            BuildableName = "Client.app"
-            BlueprintName = "Client"
-            ReferencedContainer = "container:Client.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
       <EnvironmentVariables>
          <EnvironmentVariable
             key = "_XCWidgetKind"
@@ -101,17 +78,17 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES"
+      askForAppToLaunch = "Yes"
       launchAutomaticallySubstyle = "2">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
+      <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "F84B21BD1A090F8100AAB793"
-            BuildableName = "Client.app"
-            BlueprintName = "Client"
+            BlueprintIdentifier = "CA0391B1271E1023000EB13C"
+            BuildableName = "BraveWidgetsExtension.appex"
+            BlueprintName = "BraveWidgetsExtension"
             ReferencedContainer = "container:Client.xcodeproj">
          </BuildableReference>
-      </BuildableProductRunnable>
+      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">

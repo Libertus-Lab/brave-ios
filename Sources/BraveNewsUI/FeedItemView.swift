@@ -6,6 +6,7 @@ import Foundation
 import Shared
 import BraveUI
 import UIKit
+import BraveNews
 
 /// Defines the view for displaying a specific feed item given a specific layout
 ///
@@ -647,5 +648,25 @@ extension FeedItemView {
       }
     }
 
+  }
+}
+
+extension FeedCard {
+  /// Obtain an estimated height for this card given a width it will be displayed with
+  public func estimatedHeight(for width: CGFloat) -> CGFloat {
+    switch self {
+    case .sponsor:
+      return FeedItemView.Layout.bannerThumbnail.estimatedHeight(for: width)
+    case .headline:
+      return FeedItemView.Layout.brandedHeadline.estimatedHeight(for: width)
+    case .partner:
+      return FeedItemView.Layout.partner.estimatedHeight(for: width)
+    case .ad:
+      return FeedItemView.Layout.ad.estimatedHeight(for: width)
+    case .headlinePair:
+      return 300
+    case .group, .numbered, .deals:
+      return 400
+    }
   }
 }

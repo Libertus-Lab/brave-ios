@@ -4,8 +4,44 @@
 
 import Foundation
 import BraveCore
-import BraveShared
+import BraveUI
 import Shared
+import BraveNews
+
+extension BraveAdsProxy {
+  static func live(ads: BraveAds) -> Self {
+    .init(
+      initialize: { @MainActor in
+        await ads.initialize()
+      },
+      isAdsServiceRunning: {
+        ads.isAdsServiceRunning()
+      },
+      purgeOrphanedInlineAdEvents: { @MainActor in
+        await ads.purgeOrphanedAdEvents(.inlineContentAd)
+      },
+      fetchInlineContentAd: { @MainActor in
+        await ads.inlineContentAds(dimensions: "900x750").1
+          .map(BraveAdsProxy.InlineContentAd.init(inlineContentAd:))
+      }
+    )
+  }
+}
+
+extension BraveAdsProxy.InlineContentAd {
+  init(inlineContentAd ad: BraveCore.InlineContentAd) {
+    self.init(
+      placementId: ad.placementID,
+      creativeInstanceId: ad.creativeInstanceID,
+      title: ad.title,
+      message: ad.message,
+      imageURL: ad.imageURL,
+      dimensions: ad.dimensions,
+      ctaText: ad.ctaText,
+      targetURL: ad.targetURL
+    )
+  }
+}
 
 extension Ledger.DrainStatus: RepresentableOptionType {
   public var displayString: String {

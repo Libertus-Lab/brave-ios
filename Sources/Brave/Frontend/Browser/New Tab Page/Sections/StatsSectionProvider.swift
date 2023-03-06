@@ -6,6 +6,7 @@
 import Foundation
 import Shared
 import BraveShared
+import Preferences
 import BraveUI
 import UIKit
 

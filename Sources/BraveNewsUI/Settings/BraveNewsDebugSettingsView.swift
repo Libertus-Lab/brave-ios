@@ -5,7 +5,7 @@
 
 import UIKit
 import SwiftUI
-import BraveShared
+import Preferences
 import BraveUI
 
 extension FeedDataSource.Environment {

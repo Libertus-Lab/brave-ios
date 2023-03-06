@@ -6,9 +6,10 @@
 import Foundation
 import BraveUI
 import Shared
-import BraveShared
+import Preferences
 import BraveCore
 import BraveNews
+import BraveNewsUI
 import DesignSystem
 import Growth
 
@@ -39,7 +40,7 @@ class BraveNewsSectionProvider: NSObject, NTPObservableSectionProvider {
     /// The user performed an action on a feed item
     case itemAction(FeedItemAction, context: FeedItemActionContext)
     /// The user performed an action on an inline content ad
-    case inlineContentAdAction(FeedItemAction, ad: InlineContentAd)
+    case inlineContentAdAction(FeedItemAction, ad: BraveAdsProxy.InlineContentAd)
   }
 
   let dataSource: FeedDataSource
@@ -213,8 +214,8 @@ class BraveNewsSectionProvider: NSObject, NTPObservableSectionProvider {
       if case .ad(let ad) = card {
         iabTrackedCellContexts[indexPath] = .init(collectionView: collectionView) { [weak self] in
           self?.rewards.ads.reportInlineContentAdEvent(
-            ad.placementID,
-            creativeInstanceId: ad.creativeInstanceID,
+            ad.placementId,
+            creativeInstanceId: ad.creativeInstanceId,
             eventType: .viewed
           )
           self?.recordWeeklyAdsViewedP3A(adViewed: true)
@@ -287,6 +288,7 @@ class BraveNewsSectionProvider: NSObject, NTPObservableSectionProvider {
       return cell
     case .deals(let items, let title):
       let cell = collectionView.dequeueReusableCell(for: indexPath) as FeedCardCell<DealsFeedGroupView>
+      let title = title ?? Strings.BraveNews.deals
       cell.content.titleLabel.text = title
       cell.content.titleLabel.isHidden = title.isEmpty
       zip(cell.content.feedViews, items.indices).forEach { (view, index) in
@@ -384,10 +386,10 @@ class BraveNewsSectionProvider: NSObject, NTPObservableSectionProvider {
     return handler(from: { _ in item }, card: card, indexPath: indexPath)
   }
 
-  private func inlineContentAdContextMenu(_ ad: InlineContentAd) -> FeedItemMenu {
-    typealias MenuActionHandler = (_ ad: InlineContentAd) -> Void
+  private func inlineContentAdContextMenu(_ ad: BraveAdsProxy.InlineContentAd) -> FeedItemMenu {
+    typealias MenuActionHandler = (_ ad: BraveAdsProxy.InlineContentAd) -> Void
 
-    func itemActionHandler(_ action: FeedItemAction, _ ad: InlineContentAd) {
+    func itemActionHandler(_ action: FeedItemAction, _ ad: BraveAdsProxy.InlineContentAd) {
       self.actionHandler(.inlineContentAdAction(action, ad: ad))
     }
 
@@ -593,7 +595,7 @@ extension FeedItemView {
 }
 
 extension FeedItemView {
-  func setupWithInlineContentAd(_ ad: InlineContentAd) {
+  func setupWithInlineContentAd(_ ad: BraveAdsProxy.InlineContentAd) {
     titleLabel.text = ad.title
     thumbnailImageView.sd_setImage(
       with: ad.imageURL.asURL, placeholderImage: nil, options: .avoidAutoSetImage,

@@ -6,7 +6,8 @@
 import Foundation
 import UIKit
 import SnapKit
-import BraveShared
+import BraveShared // BraveUX (URLs)
+import Preferences
 import Shared
 import BraveCore
 import BraveUI

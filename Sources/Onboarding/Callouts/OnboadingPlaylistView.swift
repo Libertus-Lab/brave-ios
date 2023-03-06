@@ -6,7 +6,7 @@
 import SwiftUI
 import BraveUI
 import Shared
-import BraveShared
+import BraveShared // BraveUX -> should go to BraveUI
 
 public struct PlaylistOnboardingView: View {
   public var onButtonPressed: (() -> Void)?

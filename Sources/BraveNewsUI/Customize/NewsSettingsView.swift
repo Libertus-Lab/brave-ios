@@ -4,11 +4,15 @@
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 import Foundation
-import BraveShared
+import Preferences
 import SwiftUI
 import Combine
 import BraveUI
-import BraveCore
+import Strings
+
+extension URL {
+  public static let braveNewsPrivacyURL = URL(string: "https://brave.com/privacy/#brave-news")!
+}
 
 public class NewsSettingsViewController: UIHostingController<NewsSettingsView> {
   private let dataSource: FeedDataSource
@@ -23,7 +27,7 @@ public class NewsSettingsViewController: UIHostingController<NewsSettingsView> {
     self.dataSource = dataSource
     super.init(rootView: NewsSettingsView(dataSource: dataSource, searchDelegate: searchDelegate))
     rootView.tappedOptInLearnMore = {
-      openURL(BraveUX.braveNewsPrivacyURL)
+      openURL(.braveNewsPrivacyURL)
     }
   }
   

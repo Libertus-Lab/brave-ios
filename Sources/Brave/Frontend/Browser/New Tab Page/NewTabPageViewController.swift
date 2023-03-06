@@ -9,10 +9,12 @@ import CoreData
 import Data
 import Shared
 import BraveShared
+import Preferences
 import BraveCore
 import SnapKit
 import SwiftUI
 import BraveNews
+import BraveNewsUI
 import Combine
 import DesignSystem
 import Growth
@@ -546,7 +548,7 @@ class NewTabPageViewController: UIViewController {
         self.backgroundButtonsView.alpha = 1.0
       }
     case .optInCardAction(.learnMoreButtonTapped):
-      delegate?.navigateToInput(BraveUX.braveNewsPrivacyURL.absoluteString, inNewTab: false, switchingToPrivateMode: false)
+      delegate?.navigateToInput(URL.braveNewsPrivacyURL.absoluteString, inNewTab: false, switchingToPrivateMode: false)
     case .optInCardAction(.turnOnBraveNewsButtonTapped):
       preventReloadOnBraveNewsEnabledChange = true
       Preferences.BraveNews.userOptedIn.value = true
@@ -606,8 +608,8 @@ class NewTabPageViewController: UIViewController {
       guard let url = ad.targetURL.asURL else { return }
       if !switchingToPrivateMode {
         rewards.ads.reportInlineContentAdEvent(
-          ad.placementID,
-          creativeInstanceId: ad.creativeInstanceID,
+          ad.placementId,
+          creativeInstanceId: ad.creativeInstanceId,
           eventType: .clicked
         )
       }

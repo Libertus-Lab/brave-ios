@@ -7,6 +7,7 @@ import Foundation
 import Data
 import Shared
 import BraveShared
+import Preferences
 import BraveUI
 import UIKit
 import Growth

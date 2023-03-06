@@ -3,7 +3,7 @@
 import Foundation
 import SafariServices
 import Shared
-import BraveShared
+import BraveShared // Cert Pinning
 import SwiftyJSON
 import os.log
 

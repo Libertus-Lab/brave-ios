@@ -5,6 +5,7 @@
 
 import Foundation
 import Strings
+import Preferences
 
 // MARK: - SSL Certificate Viewer
 

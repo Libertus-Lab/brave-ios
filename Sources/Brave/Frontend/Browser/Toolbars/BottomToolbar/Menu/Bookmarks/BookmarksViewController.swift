@@ -7,6 +7,7 @@ import CoreData
 import Shared
 import Data
 import BraveShared
+import Preferences
 import Favicon
 import CoreServices
 import os.log

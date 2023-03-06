@@ -6,9 +6,9 @@
 import Foundation
 import CoreData
 import Shared
-import BraveShared
 import Network
 import os.log
+import Preferences
 
 /// Stores the alerts data we receive from Brave VPN.
 /// The alert is a resource blocked by the VPN service

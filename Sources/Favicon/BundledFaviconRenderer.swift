@@ -8,6 +8,7 @@ import UIKit
 import BraveCore
 import Shared
 import BraveShared
+import FaviconModels
 import os.log
 
 /// A class for rendering a Bundled FavIcon onto a `UIImage`
@@ -132,5 +133,12 @@ public class BundledFaviconRenderer {
       case backgroundColor = "background_color"
       case imageURL = "image_url"
     }
+  }
+}
+
+extension Favicon {
+  @MainActor
+  public static func renderImage(_ image: UIImage, backgroundColor: UIColor?, shouldScale: Bool) async -> Favicon {
+    await UIImage.renderFavicon(image, backgroundColor: backgroundColor, shouldScale: shouldScale)
   }
 }

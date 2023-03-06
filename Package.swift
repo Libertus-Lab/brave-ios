@@ -26,10 +26,14 @@ var package = Package(
     .library(name: "Strings", targets: ["Strings"]),
     .library(name: "BraveVPN", targets: ["BraveVPN"]),
     .library(name: "BraveNews", targets: ["BraveNews"]),
+    .library(name: "BraveNewsUI", targets: ["BraveNewsUI"]),
     .library(name: "Favicon", targets: ["Favicon"]),
+    .library(name: "FaviconModels", targets: ["FaviconModels"]),
     .library(name: "Onboarding", targets: ["Onboarding"]),
     .library(name: "Growth", targets: ["Growth"]),
     .library(name: "RuntimeWarnings", targets: ["RuntimeWarnings"]),
+    .library(name: "CodableHelpers", targets: ["CodableHelpers"]),
+    .library(name: "Preferences", targets: ["Preferences"]),
     .plugin(name: "IntentBuilderPlugin", targets: ["IntentBuilderPlugin"]),
     .plugin(name: "LoggerPlugin", targets: ["LoggerPlugin"])
   ],
@@ -61,7 +65,6 @@ var package = Package(
         "BraveCore",
         "MaterialComponents",
         "Strings",
-        "SDWebImage",
         "SwiftKeychainWrapper",
         "SwiftyJSON",
       ],
@@ -69,7 +72,7 @@ var package = Package(
     ),
     .target(
       name: "BraveShared",
-      dependencies: ["SDWebImage", "Shared", "Strings", "SnapKit"],
+      dependencies: ["Shared", "Strings", "SnapKit", "Preferences"],
       resources: [
         .copy("Certificates/AmazonRootCA1.cer"),
         .copy("Certificates/AmazonRootCA2.cer"),
@@ -95,7 +98,6 @@ var package = Package(
     .target(
       name: "BraveUI",
       dependencies: [
-        "BraveShared",
         "Strings",
         "DesignSystem",
         "PanModal",
@@ -115,13 +117,13 @@ var package = Package(
     .binaryTarget(name: "sqlcipher", path: "ThirdParty/sqlcipher/sqlcipher.xcframework"),
     .target(
       name: "Storage",
-      dependencies: ["Shared", "sqlcipher", "SDWebImage"],
+      dependencies: ["Shared", "sqlcipher"],
       cSettings: [.define("SQLITE_HAS_CODEC")],
       plugins: ["LoggerPlugin"]
     ),
     .target(
       name: "Data",
-      dependencies: ["BraveShared", "Storage", "Strings"],
+      dependencies: ["BraveShared", "Storage", "Strings", "Preferences"],
       plugins: ["LoggerPlugin"]
     ),
     .target(
@@ -152,7 +154,7 @@ var package = Package(
     ),
     .target(
       name: "BraveWidgetsModels",
-      dependencies: ["Favicon"],
+      dependencies: ["FaviconModels"],
       sources: ["BraveWidgets.intentdefinition", "LockScreenFavoriteIntentHandler.swift", "FavoritesWidgetData.swift"],
       plugins: ["IntentBuilderPlugin", "LoggerPlugin"]
     ),
@@ -161,7 +163,6 @@ var package = Package(
     .target(
       name: "BraveVPN",
       dependencies: [
-        "BraveShared",
         "Strings",
         "SnapKit",
         "Then",
@@ -176,28 +177,33 @@ var package = Package(
     .target(
       name: "BraveNews",
       dependencies: [
-        "BraveShared",
-        "Strings",
-        "SnapKit",
+        "Preferences",
         "Then",
         "Data",
-        "BraveUI",
-        "DesignSystem",
         "CodableHelpers",
-        "BraveCore",
-        "MaterialComponents",
-        "Static",
         "FeedKit",
         "Fuzi",
-        "Growth",
-        .product(name: "Lottie", package: "lottie-ios"),
         .product(name: "Collections", package: "swift-collections"),
+      ],
+      plugins: ["LoggerPlugin"]
+    ),
+    .target(
+      name: "BraveNewsUI",
+      dependencies: [
+        "BraveNews",
+        "BraveUI",
+        "Strings",
+        "SnapKit",
+        "DesignSystem",
+        "Static",
+        .product(name: "Lottie", package: "lottie-ios"),
       ],
       resources: [
         .copy("Lottie Assets/brave-today-welcome-graphic.json"),
       ],
       plugins: ["LoggerPlugin"]
     ),
+    .target(name: "Preferences", dependencies: ["Shared"]),
     .target(
       name: "Onboarding",
       dependencies: [
@@ -228,9 +234,11 @@ var package = Package(
       .copy("opml-test-files/states.opml"),
     ]),
     .target(name: "CodableHelpers"),
+    .target(name: "FaviconModels", dependencies: ["Shared"]),
     .target(
       name: "Favicon",
       dependencies: [
+        "FaviconModels",
         "BraveCore",
         "BraveShared",
         "Shared",
@@ -328,9 +336,12 @@ var braveTarget: PackageDescription.Target = .target(
     "BraveWidgetsModels",
     "BraveVPN",
     "BraveNews",
+    "BraveNewsUI",
     "Onboarding",
     "Growth",
     "CodableHelpers",
+    "Preferences",
+    "Favicon",
     .product(name: "Lottie", package: "lottie-ios"),
     .product(name: "Collections", package: "swift-collections"),
   ],

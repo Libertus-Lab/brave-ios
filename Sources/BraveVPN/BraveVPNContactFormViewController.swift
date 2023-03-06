@@ -5,7 +5,6 @@
 
 import Foundation
 import Shared
-import BraveShared
 import Static
 import MessageUI
 // To get cellular carrier name

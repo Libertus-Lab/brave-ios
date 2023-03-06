@@ -4,7 +4,8 @@
 
 import Foundation
 import Shared
-import BraveShared
+import BraveShared // BraveUX -> URLs (need better solution)
+import Preferences
 import BraveCore
 import Lottie
 import UIKit

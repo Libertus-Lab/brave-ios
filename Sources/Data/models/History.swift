@@ -3,7 +3,6 @@
 import CoreData
 import Shared
 import Strings
-import BraveShared
 
 func getDate(_ dayOffset: Int) -> Date {
   let calendar = Calendar(identifier: Calendar.Identifier.gregorian)

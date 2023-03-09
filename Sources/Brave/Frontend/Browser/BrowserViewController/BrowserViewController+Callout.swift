@@ -69,6 +69,12 @@ extension BrowserViewController {
     present(popup, animated: false)
   }
   
+  func presentLinkReceiptCallout() {
+    let linkReceiptView = OnboardingLinkReceiptView()
+    let popup = PopupViewController(rootView: linkReceiptView, isDismissable: true)
+    present(popup, animated: false)
+  }
+  
   func presentP3AScreenCallout() {
     // Check the blockCookieConsentNotices callout can be shown
     guard shouldShowCallout(calloutType: .p3a) else {

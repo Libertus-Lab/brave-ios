@@ -5,10 +5,10 @@
 
 import SwiftUI
 import WidgetKit
-import BraveStrings
 import Intents
 import BraveWidgetsModels
 import BraveShared // BraveUX
+import Strings
 
 struct ShortcutsWidget: Widget {
   var body: some WidgetConfiguration {
@@ -121,11 +121,11 @@ extension WidgetShortcut {
       return Strings.Widgets.shortcutsPrivateTabButton
     // Reusing localized strings for few items here.
     case .bookmarks:
-      return Strings.bookmarksMenuItem
+      return Strings.Widgets.bookmarksMenuItem
     case .history:
-      return Strings.historyMenuItem
+      return Strings.Widgets.historyMenuItem
     case .downloads:
-      return Strings.downloadsMenuItem
+      return Strings.Widgets.downloadsMenuItem
     case .playlist:
       // We usually use `Brave Playlist` to describe this feature.
       // Here we try to be more concise and use 'Playlist' word only.
@@ -135,7 +135,7 @@ extension WidgetShortcut {
     case .wallet:
       return Strings.Widgets.walletShortcutTitle
     case .scanQRCode:
-      return Strings.QRCode
+      return Strings.Widgets.QRCode
     @unknown default:
       assertionFailure()
       return ""

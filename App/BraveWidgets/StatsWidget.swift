@@ -6,7 +6,6 @@
 import WidgetKit
 import SwiftUI
 import Shared
-import BraveStrings
 import BraveWidgetsModels
 
 struct StatsWidget: Widget {

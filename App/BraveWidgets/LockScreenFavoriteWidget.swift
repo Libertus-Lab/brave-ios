@@ -6,9 +6,9 @@
 import Foundation
 import WidgetKit
 import SwiftUI
-import BraveStrings
 import BraveWidgetsModels
 import FaviconModels
+import Strings
 
 struct LockScreenFavoriteWidget: Widget {
   var body: some WidgetConfiguration {

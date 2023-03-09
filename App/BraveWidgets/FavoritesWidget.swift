@@ -6,7 +6,6 @@
 import WidgetKit
 import SwiftUI
 import Strings
-import BraveStrings
 import BraveWidgetsModels
 import FaviconModels
 

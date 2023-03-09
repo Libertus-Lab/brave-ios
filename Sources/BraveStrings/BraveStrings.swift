@@ -3916,69 +3916,9 @@ extension Strings {
       value: "Widgets",
       comment: "Title of the settings for widgets part")
     
-    public static let noFavoritesFound = NSLocalizedString("widgets.noFavoritesFound", tableName: "BraveShared", bundle: .module,
-      value: "Please open Brave to view your favorites here",
-      comment: "This shows when you add a widget but have no favorites added in your app")
-
     public static let favoritesWidgetTitle = NSLocalizedString("widgets.favoritesWidgetTitle", tableName: "BraveShared", bundle: .module,
       value: "Favorites",
       comment: "Title for favorites widget on 'add widget' screen.")
-
-    public static let favoritesWidgetDescription = NSLocalizedString("widgets.favoritesWidgetDescription", tableName: "BraveShared", bundle: .module,
-      value: "Quickly access your favorite websites.",
-      comment: "Description for favorites widget on 'add widget' screen.")
-
-    public static let shortcutsWidgetTitle = NSLocalizedString("widgets.shortcutsWidgetTitle", tableName: "BraveShared", bundle: .module,
-      value: "Shortcuts",
-      comment: "Title for shortcuts widget on 'add widget' screen.")
-
-    public static let shortcutsWidgetDescription = NSLocalizedString("widgets.shortcutsWidgetDescription", tableName: "BraveShared", bundle: .module,
-      value: "Quick access to search the web or open web pages in Brave.",
-      comment: "Description for shortcuts widget on 'add widget' screen.")
-
-    public static let shortcutsNewTabButton = NSLocalizedString("widgets.shortcutsNewTabButton", tableName: "BraveShared", bundle: .module,
-      value: "New Tab",
-      comment: "Button to open new browser tab.")
-
-    public static let shortcutsPrivateTabButton = NSLocalizedString("widgets.shortcutsPrivateTabButton", tableName: "BraveShared", bundle: .module,
-      value: "Private Tab",
-      comment: "Button to open new private browser tab.")
-
-    public static let shortcutsPlaylistButton = NSLocalizedString("widgets.shortcutsPlaylistButton", tableName: "BraveShared", bundle: .module,
-      value: "Playlist",
-      comment: "Button to open video playlist window.")
-
-    public static let shortcutsEnterURLButton = NSLocalizedString("widgets.shortcutsEnterURLButton", tableName: "BraveShared", bundle: .module,
-      value: "Search or type a URL",
-      comment: "Button to the browser and enter URL or make a search query there.")
-
-    public static let shieldStatsTitle = NSLocalizedString("widgets.shieldStatsTitle", tableName: "BraveShared", bundle: .module,
-      value: "Privacy Stats",
-      comment: "Title for Brave Shields widget on 'add widget' screen.")
-
-    public static let shieldStatsDescription = NSLocalizedString("widgets.shieldStatsDescription", tableName: "BraveShared", bundle: .module,
-      value: "A summary of how Brave saves you time and protects you online.",
-      comment: "Description for Brave Shields widget on 'add widget' screen.")
-
-    public static let shieldStatsWidgetTitle = NSLocalizedString("widgets.shieldStatsWidgetTitle", tableName: "BraveShared", bundle: .module,
-      value: "Privacy Stats",
-      comment: "Title of Brave Shields widget shown above stat numbers.")
-
-    public static let singleStatTitle = NSLocalizedString("widgets.singleStatTitle", tableName: "BraveShared", bundle: .module,
-      value: "Privacy Stat",
-      comment: "Title for Brave Shields single stat widget on 'add widget' screen.")
-
-    public static let singleStatDescription = NSLocalizedString("widgets.singleStatDescription", tableName: "BraveShared", bundle: .module,
-      value: "A summary of how Brave has protected you online.",
-      comment: "Description for Brave Shields single stat widget on 'add widget' screen.")
-    
-    public static let searchShortcutTitle = NSLocalizedString("widgets.searchShortcutTitle", tableName: "BraveShared", bundle: .module,
-                                                              value: "Search",
-                                                              comment: "Description for the search option on the 'shortcuts' widget.")
-    
-    public static let walletShortcutTitle = NSLocalizedString("widgets.walletShortcutTitle", tableName: "BraveShared", bundle: .module,
-                                                              value: "Brave Wallet",
-                                                              comment: "Description for the Brave Wallet option on the 'shortcuts' widget.")
   }
 }
 

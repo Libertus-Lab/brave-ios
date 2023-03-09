@@ -6,10 +6,10 @@
 import WidgetKit
 import SwiftUI
 import Intents
-import BraveStrings
 import BraveWidgetsModels
 import DesignSystem
 import BraveShields
+import Strings
 
 struct SingleStatWidget: Widget {
 

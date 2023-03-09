@@ -423,7 +423,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
       (SessionRestoreHandler.path, SessionRestoreHandler()),
       (ErrorPageHandler.path, ErrorPageHandler()),
       (ReaderModeHandler.path, ReaderModeHandler(profile: profile)),
-      (SNSDomainHandler.path, SNSDomainHandler())
+      (Web3DomainHandler.path(for: .solana), Web3DomainHandler(for: .solana)),
+      (Web3DomainHandler.path(for: .ethereum), Web3DomainHandler(for: .ethereum)),
+      (Web3DomainHandler.path(for: .ethereumOffchain), Web3DomainHandler(for: .ethereumOffchain))
     ]
     
     responders.forEach { (path, responder) in

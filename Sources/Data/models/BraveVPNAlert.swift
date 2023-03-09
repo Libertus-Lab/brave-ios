@@ -173,7 +173,7 @@ public final class BraveVPNAlert: NSManagedObject, CRUD, Identifiable {
     DataController.perform { context in
       let timestampKeyPath = #keyPath(BraveVPNAlert.timestamp)
       
-      let date = Int64(Date().timeIntervalSince1970.advanced(by: -days.days))
+      let date = Int64(Date().timeIntervalSince1970.advanced(by: -Double(days * 60 * 60 * 24)))
       
       // 1. Find all older items.
       let predicate = NSPredicate(format: "\(timestampKeyPath) <= %lld AND \(timestampKeyPath) > 0", date)

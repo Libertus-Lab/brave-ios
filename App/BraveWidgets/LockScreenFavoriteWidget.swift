@@ -6,7 +6,7 @@
 import Foundation
 import WidgetKit
 import SwiftUI
-import BraveShared
+import BraveStrings
 import BraveWidgetsModels
 import FaviconModels
 

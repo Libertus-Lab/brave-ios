@@ -13,6 +13,7 @@ import os.log
 import SwiftUI
 import Combine
 import Then
+import BraveShared
 
 /// Powers the Brave News feed.
 public class FeedDataSource: ObservableObject {

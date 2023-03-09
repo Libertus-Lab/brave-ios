@@ -6,7 +6,7 @@ import Foundation
 import WebKit
 import Shared
 import Data
-import BraveShared
+import BraveShields
 import Preferences
 import BraveCore
 import BraveUI

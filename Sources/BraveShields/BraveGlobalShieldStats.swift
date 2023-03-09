@@ -4,7 +4,6 @@
 
 import Foundation
 import Strings
-import SwiftyJSON
 import Combine
 import Preferences
 
@@ -77,6 +76,13 @@ open class BraveGlobalShieldStats {
 
   fileprivate let millisecondsPerItem: Int = 50
   public let averageBytesSavedPerItem = 30485
+  
+  public enum TimeSaved {
+    case seconds(TimeInterval)
+    case minutes(TimeInterval)
+    case hours(TimeInterval)
+    case days(TimeInterval)
+  }
 
   public var timeSaved: String {
     get {
@@ -89,22 +95,22 @@ open class BraveGlobalShieldStats {
 
       if seconds {
         counter = ceil(Double(estimatedMillisecondsSaved / 1000))
-        text = Strings.shieldsTimeStatsSeconds
+        text = Strings.Shields.shieldsTimeStatsSeconds
       } else if minutes {
         counter = ceil(Double(estimatedMillisecondsSaved / 1000 / 60))
-        text = Strings.shieldsTimeStatsMinutes
+        text = Strings.Shields.shieldsTimeStatsMinutes
       } else if hours {
         counter = ceil(Double(estimatedMillisecondsSaved / 1000 / 60 / 60))
-        text = Strings.shieldsTimeStatsHour
+        text = Strings.Shields.shieldsTimeStatsHour
       } else {
         counter = ceil(Double(estimatedMillisecondsSaved / 1000 / 60 / 60 / 24))
-        text = Strings.shieldsTimeStatsDays
+        text = Strings.Shields.shieldsTimeStatsDays
       }
 
       if let counterLocaleStr = Int(counter).decimalFormattedString {
         return counterLocaleStr + text
       } else {
-        return "0" + Strings.shieldsTimeStatsSeconds  // If decimalFormattedString returns nil, default to "0s"
+        return "0" + Strings.Shields.shieldsTimeStatsSeconds  // If decimalFormattedString returns nil, default to "0s"
       }
     }
   }

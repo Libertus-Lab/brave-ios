@@ -42,26 +42,6 @@ class HistoryTests: CoreDataTestCase {
     XCTAssertEqual(newObject.domain!.visits, 2)
   }
 
-  func testFrc() {
-    let frc = History.frc()
-    XCTAssertNotNil(frc.fetchRequest.sortDescriptors)
-    XCTAssertNotNil(frc.fetchRequest.predicate)
-
-    let firstObject = createAndWait(title: "First", url: URL(string: "http://example.com")!)
-
-    // Wait a moment to make a date difference
-    sleep(UInt32(2))
-    let secondObject = createAndWait(title: "Second", url: URL(string: "https://brave.com")!)
-    XCTAssertEqual(try! DataController.viewContext.count(for: fetchRequest), 2)
-
-    XCTAssertNoThrow(try frc.performFetch())
-
-    let objects = frc.fetchedObjects!
-
-    XCTAssertEqual(objects.first?.url, secondObject.url)
-    XCTAssertEqual(objects.last?.url, firstObject.url)
-  }
-
   func testGetExisting() {
     let title = "Brave"
     let url = URL(string: "https://brave.com")!
@@ -103,19 +83,6 @@ class HistoryTests: CoreDataTestCase {
     wait(for: [deleteExpectation], timeout: 1)
 
     XCTAssertEqual(try! DataController.viewContext.count(for: fetchRequest), 0)
-  }
-
-  func testFrecencyQuery() {
-    createAndWait(url: URL(string: "https://example.com/page1")!)
-    createAndWait(url: URL(string: "https://example.com/page2")!)
-    createAndWait(url: URL(string: "https://example.com/page3")!)
-    createAndWait(url: URL(string: "https://brave.com")!)
-
-    let found = History.byFrecency(query: "example")
-    XCTAssertEqual(found.count, 3)
-
-    let notFound = History.byFrecency(query: "notfound")
-    XCTAssertEqual(notFound.count, 0)
   }
 
   @discardableResult

@@ -28,6 +28,7 @@ import BraveTalk
 import Onboarding
 import os
 import Preferences
+import BraveShields
 
 extension AppDelegate {
   // A model that is passed used in every scene

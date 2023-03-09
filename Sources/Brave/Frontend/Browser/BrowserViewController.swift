@@ -32,6 +32,7 @@ import BraveTalk
 import Favicon
 import Onboarding
 import Growth
+import BraveShields
 
 private let KVOs: [KVOConstants] = [
   .estimatedProgress,

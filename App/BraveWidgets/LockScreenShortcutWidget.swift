@@ -7,8 +7,8 @@ import Foundation
 import SwiftUI
 import WidgetKit
 import BraveWidgetsModels
-import Strings
-import BraveShared
+import BraveStrings
+import BraveShared // BraveUX
 
 struct LockScreenShortcutWidget: Widget {
   var body: some WidgetConfiguration {

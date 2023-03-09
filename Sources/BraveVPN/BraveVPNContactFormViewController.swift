@@ -12,6 +12,7 @@ import CoreTelephony
 import UIKit
 import BraveUI
 import os.log
+import BraveStrings
 
 class BraveVPNContactFormViewController: TableViewController {
 

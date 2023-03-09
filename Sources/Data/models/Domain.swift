@@ -3,7 +3,7 @@
 import UIKit
 import CoreData
 import Foundation
-import BraveShared // Shields
+import BraveShields
 import Shared
 import BraveCore
 import os.log

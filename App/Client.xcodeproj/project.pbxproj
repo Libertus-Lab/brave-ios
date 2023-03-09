@@ -25,6 +25,9 @@
 		27D6761A282DA10700BCE16E /* Icons.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 27D67619282DA10700BCE16E /* Icons.xcassets */; };
 		27D67623282DAD3700BCE16E /* BrowserIntents.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 27D67621282DAD3700BCE16E /* BrowserIntents.intentdefinition */; settings = {ATTRIBUTES = (no_codegen, ); }; };
 		27D7FF4A29B7BF030096DD93 /* CodableHelpers in Frameworks */ = {isa = PBXBuildFile; productRef = 272FC5B02979F3AD0027C53D /* CodableHelpers */; };
+		27D7FF5329BA69330096DD93 /* BraveShields in Frameworks */ = {isa = PBXBuildFile; productRef = 27D7FF5229BA69330096DD93 /* BraveShields */; };
+		27D7FF5529BA69E50096DD93 /* BraveShields in Frameworks */ = {isa = PBXBuildFile; productRef = 27D7FF5429BA69E50096DD93 /* BraveShields */; };
+		27D7FF5729BA6A120096DD93 /* BraveStrings in Frameworks */ = {isa = PBXBuildFile; productRef = 27D7FF5629BA6A120096DD93 /* BraveStrings */; };
 		27D972E628BD4D9900DDCF79 /* BraveNews in Frameworks */ = {isa = PBXBuildFile; productRef = 27D972E528BD4D9900DDCF79 /* BraveNews */; };
 		27DB270828BE9CB4005CB7AC /* LockScreenFavoriteWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27DB270728BE9CAE005CB7AC /* LockScreenFavoriteWidget.swift */; };
 		27F4439F2135E11200296C58 /* ShareExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 27F443952135E11200296C58 /* ShareExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -285,6 +288,7 @@
 				E6231C051B90A472005ABB0D /* libxml2.2.tbd in Frameworks */,
 				E6231C011B90A44F005ABB0D /* libz.tbd in Frameworks */,
 				27D972E628BD4D9900DDCF79 /* BraveNews in Frameworks */,
+				27D7FF5329BA69330096DD93 /* BraveShields in Frameworks */,
 				27FA217F2837FB0100FA2C45 /* BraveShared in Frameworks */,
 				7DDAF2232930091600D955A2 /* SDWebImageSVGNativeCoder in Frameworks */,
 				27FA21812837FB0100FA2C45 /* BraveWallet in Frameworks */,
@@ -311,8 +315,10 @@
 				27D7FF4A29B7BF030096DD93 /* CodableHelpers in Frameworks */,
 				27FA217B2837F95400FA2C45 /* Strings in Frameworks */,
 				27D5906F29B7BA1000AE9989 /* BraveShared in Frameworks */,
+				27D7FF5529BA69E50096DD93 /* BraveShields in Frameworks */,
 				279C432E2853E51E00A9F708 /* DesignSystem in Frameworks */,
 				CA0391B6271E1023000EB13C /* SwiftUI.framework in Frameworks */,
+				27D7FF5729BA6A120096DD93 /* BraveStrings in Frameworks */,
 				CA986FB2298C1249000C6DD8 /* BraveWidgetsModels in Frameworks */,
 				27D5907129B7BA1B00AE9989 /* Preferences in Frameworks */,
 				CA0391B4271E1023000EB13C /* WidgetKit.framework in Frameworks */,
@@ -598,6 +604,8 @@
 				272FC5B02979F3AD0027C53D /* CodableHelpers */,
 				27D5906E29B7BA1000AE9989 /* BraveShared */,
 				27D5907029B7BA1B00AE9989 /* Preferences */,
+				27D7FF5429BA69E50096DD93 /* BraveShields */,
+				27D7FF5629BA6A120096DD93 /* BraveStrings */,
 			);
 			productName = BraveWidgetsExtension;
 			productReference = CA0391B2271E1023000EB13C /* BraveWidgetsExtension.appex */;
@@ -636,6 +644,7 @@
 				7DDE6307292FEC9500B8B585 /* SDWebImage */,
 				7DDAF2222930091600D955A2 /* SDWebImageSVGNativeCoder */,
 				27C1C5EC29B6AA8800739BE5 /* Preferences */,
+				27D7FF5229BA69330096DD93 /* BraveShields */,
 			);
 			productName = Client;
 			productReference = F84B21BE1A090F8100AAB793 /* Client.app */;
@@ -2641,6 +2650,18 @@
 		27D5907029B7BA1B00AE9989 /* Preferences */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = Preferences;
+		};
+		27D7FF5229BA69330096DD93 /* BraveShields */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = BraveShields;
+		};
+		27D7FF5429BA69E50096DD93 /* BraveShields */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = BraveShields;
+		};
+		27D7FF5629BA6A120096DD93 /* BraveStrings */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = BraveStrings;
 		};
 		27D972E528BD4D9900DDCF79 /* BraveNews */ = {
 			isa = XCSwiftPackageProductDependency;

@@ -7,7 +7,7 @@ import Foundation
 import Shared
 import WebKit
 import BraveCore
-import BraveShared
+import BraveShields
 import Preferences
 import Data
 

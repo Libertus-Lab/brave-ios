@@ -8,7 +8,7 @@ import Data
 import FeedKit
 import Fuzi
 import Shared
-//import Growth
+import Growth
 import SwiftUI
 
 public struct RSSFeedLocation: Hashable, Identifiable {
@@ -119,24 +119,24 @@ extension FeedDataSource {
   
   func recordTotalExternalFeedsP3A() {
     // Q49 How many external feeds do you have in total?
-//    Task { @MainActor in
-//      UmaHistogramRecordValueToBucket(
-//        "Brave.Today.DirectFeedsTotal",
-//        buckets: [0, 1, 2, 3, 4, 5, .r(6...10), .r(11...)],
-//        value: rssFeedLocations.count
-//      )
-//    }
+    Task { @MainActor in
+      UmaHistogramRecordValueToBucket(
+        "Brave.Today.DirectFeedsTotal",
+        buckets: [0, 1, 2, 3, 4, 5, .r(6...10), .r(11...)],
+        value: rssFeedLocations.count
+      )
+    }
   }
   
   func recordExternalFeedCountChange(_ delta: Int) {
     // Q48 How many external feeds did you add last week?
-//    var storage = P3ATimedStorage<Int>.rssFeedCountStorage
-//    storage.add(value: delta, to: Date())
-//    UmaHistogramRecordValueToBucket(
-//      "Brave.Today.WeeklyAddedDirectFeedsCount",
-//      buckets: [0, 1, 2, 3, 4, 5, .r(6...10), .r(11...)],
-//      value: storage.combinedValue
-//    )
+    var storage = P3ATimedStorage<Int>.rssFeedCountStorage
+    storage.add(value: delta, to: Date())
+    UmaHistogramRecordValueToBucket(
+      "Brave.Today.WeeklyAddedDirectFeedsCount",
+      buckets: [0, 1, 2, 3, 4, 5, .r(6...10), .r(11...)],
+      value: storage.combinedValue
+    )
   }
 }
 
@@ -323,6 +323,6 @@ extension Feed {
   }
 }
 
-//extension P3ATimedStorage where Value == Int {
-//  fileprivate static var rssFeedCountStorage: Self { .init(name: "rss-feeds-added", lifetimeInDays: 7) }
-//}
+extension P3ATimedStorage where Value == Int {
+  fileprivate static var rssFeedCountStorage: Self { .init(name: "rss-feeds-added", lifetimeInDays: 7) }
+}

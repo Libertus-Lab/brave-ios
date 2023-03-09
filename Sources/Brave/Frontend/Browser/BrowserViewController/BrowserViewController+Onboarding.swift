@@ -3,13 +3,14 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-import BraveShared
+import BraveShared // BraveUX
 import Preferences
 import BraveUI
 import Shared
 import BraveCore
 import UIKit
 import Onboarding
+import BraveShields
 
 // MARK: - Onboarding
 

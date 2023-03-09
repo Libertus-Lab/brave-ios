@@ -16,6 +16,7 @@ var package = Package(
     .library(name: "Shared", targets: ["Shared"]),
     .library(name: "BraveCore", targets: ["BraveCore", "MaterialComponents"]),
     .library(name: "BraveShared", targets: ["BraveShared"]),
+    .library(name: "BraveShields", targets: ["BraveShields"]),
     .library(name: "BraveUI", targets: ["BraveUI"]),
     .library(name: "DesignSystem", targets: ["DesignSystem"]),
     .library(name: "BraveWallet", targets: ["BraveWallet"]),
@@ -24,6 +25,7 @@ var package = Package(
     .library(name: "BrowserIntentsModels", targets: ["BrowserIntentsModels"]),
     .library(name: "BraveWidgetsModels", targets: ["BraveWidgetsModels"]),
     .library(name: "Strings", targets: ["Strings"]),
+    .library(name: "BraveStrings", targets: ["BraveStrings"]),
     .library(name: "BraveVPN", targets: ["BraveVPN"]),
     .library(name: "BraveNews", targets: ["BraveNews"]),
     .library(name: "BraveNewsUI", targets: ["BraveNewsUI"]),
@@ -72,7 +74,7 @@ var package = Package(
     ),
     .target(
       name: "BraveShared",
-      dependencies: ["Shared", "Strings", "SnapKit", "Preferences"],
+      dependencies: ["Shared", "SnapKit", "Preferences"],
       resources: [
         .copy("Certificates/AmazonRootCA1.cer"),
         .copy("Certificates/AmazonRootCA2.cer"),
@@ -90,6 +92,7 @@ var package = Package(
       ],
       plugins: ["LoggerPlugin"]
     ),
+    .target(name: "BraveStrings", dependencies: ["Strings", "Preferences"]),
     .target(
       name: "Growth",
       dependencies: ["BraveVPN", "Shared", "BraveShared", "Strings", "SnapKit"],
@@ -111,6 +114,7 @@ var package = Package(
       ],
       plugins: ["LoggerPlugin"]
     ),
+    .target(name: "BraveShields", dependencies: ["Strings", "Preferences"], plugins: ["LoggerPlugin"]),
     .target(name: "DesignSystem"),
     .binaryTarget(name: "BraveCore", path: "node_modules/brave-core-ios/BraveCore.xcframework"),
     .binaryTarget(name: "MaterialComponents", path: "node_modules/brave-core-ios/MaterialComponents.xcframework"),
@@ -123,7 +127,7 @@ var package = Package(
     ),
     .target(
       name: "Data",
-      dependencies: ["BraveShared", "Storage", "Strings", "Preferences"],
+      dependencies: ["BraveShields", "Storage", "Strings", "Preferences"],
       plugins: ["LoggerPlugin"]
     ),
     .target(
@@ -177,12 +181,14 @@ var package = Package(
     .target(
       name: "BraveNews",
       dependencies: [
+        "BraveShared",
         "Preferences",
         "Then",
         "Data",
         "CodableHelpers",
         "FeedKit",
         "Fuzi",
+        "Growth",
         .product(name: "Collections", package: "swift-collections"),
       ],
       plugins: ["LoggerPlugin"]
@@ -190,6 +196,7 @@ var package = Package(
     .target(
       name: "BraveNewsUI",
       dependencies: [
+        "BraveStrings",
         "BraveNews",
         "BraveUI",
         "Strings",

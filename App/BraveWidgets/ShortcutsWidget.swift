@@ -5,10 +5,10 @@
 
 import SwiftUI
 import WidgetKit
-import Strings
-import BraveShared
+import BraveStrings
 import Intents
 import BraveWidgetsModels
+import BraveShared // BraveUX
 
 struct ShortcutsWidget: Widget {
   var body: some WidgetConfiguration {

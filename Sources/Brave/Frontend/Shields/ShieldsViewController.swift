@@ -5,7 +5,7 @@
 import Storage
 import SnapKit
 import Shared
-import BraveShared
+import BraveShields
 import Preferences
 import Data
 import BraveUI

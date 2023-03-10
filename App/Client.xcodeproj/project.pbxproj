@@ -29,6 +29,7 @@
 		27D7FF5529BA69E50096DD93 /* BraveShields in Frameworks */ = {isa = PBXBuildFile; productRef = 27D7FF5429BA69E50096DD93 /* BraveShields */; };
 		27D7FF5B29BA75FB0096DD93 /* WidgetStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27D7FF5A29BA75AD0096DD93 /* WidgetStrings.swift */; };
 		27D7FF5E29BA784C0096DD93 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 27D7FF6029BA784C0096DD93 /* Localizable.strings */; };
+		27D7FF7329BB816E0096DD93 /* PrivateCDN in Frameworks */ = {isa = PBXBuildFile; productRef = 27D7FF7229BB816E0096DD93 /* PrivateCDN */; };
 		27D972E628BD4D9900DDCF79 /* BraveNews in Frameworks */ = {isa = PBXBuildFile; productRef = 27D972E528BD4D9900DDCF79 /* BraveNews */; };
 		27DB270828BE9CB4005CB7AC /* LockScreenFavoriteWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27DB270728BE9CAE005CB7AC /* LockScreenFavoriteWidget.swift */; };
 		27F4439F2135E11200296C58 /* ShareExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 27F443952135E11200296C58 /* ShareExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -310,6 +311,7 @@
 				27D7FF5329BA69330096DD93 /* BraveShields in Frameworks */,
 				27FA217F2837FB0100FA2C45 /* BraveShared in Frameworks */,
 				7DDAF2232930091600D955A2 /* SDWebImageSVGNativeCoder in Frameworks */,
+				27D7FF7329BB816E0096DD93 /* PrivateCDN in Frameworks */,
 				27FA21812837FB0100FA2C45 /* BraveWallet in Frameworks */,
 				0A1DF486244A2ECB00541FE4 /* NetworkExtension.framework in Frameworks */,
 				27466BB1288EDB9C00584C90 /* RuntimeWarnings in Frameworks */,
@@ -664,6 +666,7 @@
 				7DDAF2222930091600D955A2 /* SDWebImageSVGNativeCoder */,
 				27C1C5EC29B6AA8800739BE5 /* Preferences */,
 				27D7FF5229BA69330096DD93 /* BraveShields */,
+				27D7FF7229BB816E0096DD93 /* PrivateCDN */,
 			);
 			productName = Client;
 			productReference = F84B21BE1A090F8100AAB793 /* Client.app */;
@@ -2703,6 +2706,10 @@
 		27D7FF5429BA69E50096DD93 /* BraveShields */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = BraveShields;
+		};
+		27D7FF7229BB816E0096DD93 /* PrivateCDN */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = PrivateCDN;
 		};
 		27D972E528BD4D9900DDCF79 /* BraveNews */ = {
 			isa = XCSwiftPackageProductDependency;

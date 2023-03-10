@@ -36,6 +36,7 @@ var package = Package(
     .library(name: "RuntimeWarnings", targets: ["RuntimeWarnings"]),
     .library(name: "CodableHelpers", targets: ["CodableHelpers"]),
     .library(name: "Preferences", targets: ["Preferences"]),
+    .library(name: "PrivateCDN", targets: ["PrivateCDN"]),
     .plugin(name: "IntentBuilderPlugin", targets: ["IntentBuilderPlugin"]),
     .plugin(name: "LoggerPlugin", targets: ["LoggerPlugin"])
   ],
@@ -312,6 +313,8 @@ var package = Package(
     ),
     .target(name: "Strings"),
     .target(name: "RuntimeWarnings"),
+    .target(name: "PrivateCDN", dependencies: ["SDWebImage"]),
+    .testTarget(name: "PrivateCDNTests", dependencies: ["PrivateCDN"]),
     .testTarget(name: "GrowthTests", dependencies: ["Growth", "Shared", "BraveShared", "BraveVPN"]),
     .plugin(name: "IntentBuilderPlugin", capability: .buildTool()),
     .plugin(name: "LoggerPlugin", capability: .buildTool()),

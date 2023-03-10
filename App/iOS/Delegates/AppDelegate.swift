@@ -29,6 +29,7 @@ import Onboarding
 import os
 import Preferences
 import BraveShields
+import PrivateCDN
 
 extension AppDelegate {
   // A model that is passed used in every scene
@@ -178,7 +179,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     MenuHelper.defaultHelper.setItems()
 
-//    SDImageCodersManager.shared.addCoder(PrivateCDNImageCoder())
+    SDImageCodersManager.shared.addCoder(PrivateCDNImageCoder())
     SDImageCodersManager.shared.addCoder(SDImageSVGNativeCoder.shared)
 
     // Setup Profile
